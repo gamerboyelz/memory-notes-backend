@@ -73,11 +73,11 @@ app.get('/get-tasks',async(req, res)=>{
 })
 
 
-app.patch('/',(req,res)=>{
+app.patch('/update-task',(req,res)=>{
     res.send('the patch method was used')
     console.log("the patch method was used")
 })
-app.delete('/',(req,res)=>{
+app.delete('/delete-task',(req,res)=>{
     res.send('the delete method was used')
     console.log("the delete method was used")
 })
