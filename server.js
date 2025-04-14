@@ -73,14 +73,36 @@ app.get('/get-tasks',async(req, res)=>{
 })
 
 
-app.patch('/update-task',(req,res)=>{
-    res.send('the patch method was used')
-    console.log("the patch method was used")
-})
-app.delete('/delete-task',(req,res)=>{
-    res.send('the delete method was used')
-    console.log("the delete method was used")
-})
+app.patch('/update-task',async(req,res)=>{
+        try {
+            console.log("to update task")
+            
+        } catch (error) {
+            res.status(500).json({ message: "Server error", error }); 
+
+        }
+        
+    }
+    
+)
+app.delete('/delete-task/:id',async (req,res)=>{
+
+        try {
+            console.log("route to delete task initiated")
+            const {id} = req.params
+            const deletedDocument = await FormData.findByIdAndDelete(id)
+
+            if (!deletedDocument) {
+                return res.status(404).json({ message: 'Resource not found' });
+              }
+              res.json({ message: 'Resource deleted', deleted: deletedDocument });
+            
+        } catch (error) {
+            console.error("Error deleting resource:", error);
+            res.status(500).json({ message: "Server error", error }); 
+
+        }   
+    })
 
 
 //start server
