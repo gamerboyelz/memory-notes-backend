@@ -3,9 +3,11 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
+const port = process.env.PORT || 4000
 //IMPLEMENTING CORS OR cross origin resource features so react app can sed post request to express server
 app.use(cors({
-    origin: "http://localhost:5173",//allows request for 
+    // origin: "http://localhost:5173",//allows request for
+    origin: "https://memorynotes.netlify.app/",//allows request for  
     methods:['GET','POST','PATCH','DELETE'], // Allowed HTTP methods
     credentials: true // Allow sending cookies with requests
 }))
@@ -71,6 +73,19 @@ app.get('/get-tasks',async(req, res)=>{
     }
 
 })
+//get single Task for update function
+// app.get('/getSingle-task',async(req, res)=>{
+//     try {
+//         const tasks = await FormData.findOne()// Fetch all documents from the database specifically retrieves all records from the tasks collection that was defined in the model.
+//         console.log(tasks)
+//         res.status(200).json(tasks)//sends tasks data to front end when route is requested.
+
+//     } catch (error) {
+//         res.status(500).json({message: "server error", error})
+        
+//     }
+
+// })
 
 
 app.patch('/update-task',async(req,res)=>{
@@ -106,7 +121,10 @@ app.delete('/delete-task/:id',async (req,res)=>{
 
 
 //start server
-app.listen(process.env.PORT, ()=>{
+// app.listen(process.env.PORT, ()=>{
+//     console.log("we are listening to port:",process.env.PORT)
+// })
+app.listen(port, ()=>{
     console.log("we are listening to port:",process.env.PORT)
 })
 
