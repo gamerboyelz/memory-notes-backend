@@ -7,7 +7,7 @@ const port = process.env.PORT || 4000
 //IMPLEMENTING CORS OR cross origin resource features so react app can sed post request to express server
 app.use(cors({
     // origin: "http://localhost:5173",//allows request for
-    origin: "https://memorynotes.netlify.app/",//allows request for  
+    origin: "https://memorynotes.netlify.app",//allows request for  
     methods:['GET','POST','PATCH','DELETE'], // Allowed HTTP methods
     credentials: true // Allow sending cookies with requests
 }))
